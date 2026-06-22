@@ -2,7 +2,7 @@
 
 基于 **FastAPI + FAISS + ReAct Loop + DeepSeek** 的多智能体问答系统。
 
-> 本项目为一个真正的 **LLM 驱动的多 Agent 系统**，而非传统的 RAG 管道。
+> 本项目为一个真正的 **LLM 驱动的多 Agent 系统**，而非传统的 RAG。
 > LLM 自主决策工具调用、任务分解、多智能体协作与答案反思。
 
 ---
