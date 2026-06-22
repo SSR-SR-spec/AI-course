@@ -1,0 +1,22 @@
+services:
+  backend:
+    build: .
+    container_name: campus-ai-backend
+    ports:
+      - "80:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_BASE_URL=https://api.deepseek.com
+      - OPENAI_MODEL=deepseek/deepseek-chat
+      - KB_DIR=./kb_semantic_v2
+      - EMBEDDING_MODEL=./models/paraphrase-multilingual-MiniLM-L12-v2
+    volumes:
+      - ai-course_kb_data:/app/kb_semantic_v2
+      - ai-course_model_cache:/app/models
+    restart: unless-stopped
+
+volumes:
+  ai-course_kb_data:
+    external: true
+  ai-course_model_cache:
+    external: true

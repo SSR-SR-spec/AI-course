@@ -1,0 +1,3 @@
+{
+  "embedding_model": "./models/paraphrase-multilingual-MiniLM-L12-v2"
+}

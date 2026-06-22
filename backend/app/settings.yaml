@@ -1,0 +1,34 @@
+# Local deployment settings (edit this file; no command-line env needed).
+#
+# If `openai_api_key` is empty, the server will automatically fall back to `mock`
+# so the project still runs offline.
+
+app_name: campus-llm-mas-rag
+
+llm:
+  provider: openai_compatible
+  # Do NOT put real API keys in this file (easy to leak via screenshots / git).
+  # Put secrets in `app/settings.local.yaml` (gitignored).
+  openai_api_key: ""
+  openai_base_url: "https://api.deepseek.com"
+  # litellm expects a provider-prefixed model id for DeepSeek, e.g. `deepseek/deepseek-chat`
+  openai_model: "deepseek/deepseek-chat"
+  timeout_s: 120
+  max_output_tokens: 800
+
+redis:
+  url: null
+
+rag:
+  kb_dir: "./kb_semantic_v2"
+  embedding_model: "./models/paraphrase-multilingual-MiniLM-L12-v2"
+  huggingface_hub_endpoint: "https://hf-mirror.com"
+  top_k: 5
+  max_chars_per_snippet: 600
+  max_context_chars: 6000
+  max_snippets: 3
+  min_score: 0.35
+  chunk_strategy: recursive  # simple | recursive | semantic
+  chunk_size: 700
+  chunk_overlap: 100
+  similarity_threshold: 0.75  # semantic 策略的语义边界阈值

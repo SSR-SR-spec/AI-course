@@ -1,0 +1,37 @@
+# Copy to `app/settings.yaml` and fill in secrets.
+#
+# Notes:
+# - This file is safe to commit (no secrets).
+# - `app/settings.yaml` is intended for local deployment values.
+
+app_name: campus-llm-mas-rag
+
+llm:
+  provider: openai_compatible # mock | openai_compatible
+  openai_api_key: "" # prefer putting real keys in `app/settings.local.yaml`
+  openai_base_url: "https://api.deepseek.com"
+  openai_model: "deepseek/deepseek-chat"
+  timeout_s: 120
+  max_output_tokens: 800
+
+redis:
+  url: null
+
+rag:
+  kb_dir: "./kb"
+  # Offline: "local_hash" (no download). Semantic: Hugging Face model id, e.g.:
+  #   sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2  (better for Chinese+English)
+  #   sentence-transformers/all-MiniLM-L6-v2  (small, English-biased)
+  # First run downloads weights; ensure network access or set huggingface_hub_endpoint.
+  embedding_model: "local_hash"
+  # Optional mirror (China / slow HuggingFace). Example: "https://hf-mirror.com"
+  # huggingface_hub_endpoint: "https://hf-mirror.com"
+  # If download keeps failing or cache is corrupt, run from backend folder:
+  #   python scripts/download_embedding_model.py
+  # Then set embedding_model to the printed local path (see script output).
+  top_k: 5
+  max_chars_per_snippet: 600
+  max_context_chars: 6000
+  max_snippets: 3
+  chunk_size: 700
+  chunk_overlap: 120

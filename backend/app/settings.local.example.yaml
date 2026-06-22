@@ -1,0 +1,6 @@
+# 本地配置覆盖文件
+# 复制为 settings.local.yaml 后填入 API Key（该文件已 gitignore）
+# cp settings.local.example.yaml settings.local.yaml
+
+llm:
+  openai_api_key: "sk-your-deepseek-api-key"
